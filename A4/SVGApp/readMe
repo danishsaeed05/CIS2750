@@ -1,0 +1,11 @@
+Assignment 4
+
+
+1. If you are not logged in, then A3 functionality will work as before. 
+2. Once logged in, all the A3 functionality will also work with DB.
+3. You also have the option to "Logout" once logged it
+4. To see the functionalities of the 6 querries, select it from dropdown list "Select Query Search Type:"
+5. AS you navigate between the 6 querries dropdown, the options for you will dynamically change as well.
+
+Thank you,
+Danish Saeed

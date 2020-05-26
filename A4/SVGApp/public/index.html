@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>SVG Image Viewer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CHANGE ME">
+  <meta name="keywords" content="CHANGE ME">
+  <meta name="author" content="CHANGE ME">
+  <!-- Load jquery, bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <!-- Custom CSS End -->
+</head>
+
+<body>
+  <div id="content">
+    <h3>SVG Image Viewer</h3>
+    <br>
+
+    <h4> File Log Panel </h4>
+    <div id="logPanel">
+      <table class="table" id="table">
+        <tr>
+          <th>Image (click to download)</th>
+          <th>File name (click to download)</th>
+          <th>File size</th>
+          <th>Number of rectangles</th>
+          <th>Number of circles</th>
+          <th>Number of paths</th>
+          <th>Number of groups</th>
+        </tr>
+      </table>
+    </div>
+    <form id="upload" method="post" action="/upload" enctype="multipart/form-data">
+      <input class="btn btn-dark mb-2" type="file" name="uploadFile" accept=".svg" id="uploadFile" required>
+      <input class="btn btn-dark mb-2" type="submit" id="submitUploadFile" value="Submit file">
+    </form>
+
+    <br>
+    <br>
+
+    <h4>SVG View Panel </h4>
+    <label for="files">Select file to display its components:</label>
+    <select name="files" class="dropdown" id="dropdown">
+      <option selected>None</option>
+    </select>
+    <div id="viewPanel">
+      <img class="center" id="viewPanelImage" align="middle" src="">
+      <table id="mytable">
+      </table>
+    </div>
+    <br>
+
+
+
+    <div id="devEditAtt">
+      <h5>Edit Attributes </h5>
+      <form id="editAttribute">
+
+
+        <label class="control-label col-sm-2 col-form-label" id="editlbltitle" for="edittitle">Title:</label>
+        <input type="text" class="form-control" id="edittitle" placeholder="Enter Title" name="edittitle" required>
+
+
+        <label class="control-label col-sm-2 col-form-label" id="editlbldesc" for="editdesc">Description:</label>
+        <input type="text" class="form-control" id="editdesc" placeholder="Enter Description" name="editdesc" required>
+        <br>
+        <button class="btn btn-dark mb-2" type="submit">Update</button>
+
+      </form>
+    </div>
+
+    <br>
+    <br />
+    <br>
+
+    <div id="createSVG">
+      <h4>Create SVG file</h4>
+      <form id="createSVGimage">
+        <div class="form-group row">
+          <label class="control-label col-sm-2 col-form-label" for="fileName">Filename:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="fileName" placeholder="Enter Filename" name="fileName" required>
+          </div>
+          <div class="input-group-text">.svg</div>
+        </div>
+
+        <div class="form-group row">
+          <label class="control-label col-sm-2 col-form-label" for="title">Title:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title"></div>
+        </div>
+
+        <div class="form-group row">
+          <label class="control-label col-sm-2 col-form-label" for="description">Description:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="description" placeholder="Enter Description" name="description">
+          </div>
+        </div>
+        <br>
+
+        <button class="btn btn-dark mb-2" type="submit">Create SVG</button>
+      </form>
+    </div>
+
+    <br>
+    <br>
+
+
+
+    <div id="Addshapes">
+      <h4>Add shapes</h4>
+      <div class="form-group row" id="shapes">
+        <form id="addShape">
+
+          <select name="drop2" class="dropdown2" id="dropdown2">
+            <option selected>None</option>
+          </select>
+
+          <select name="drop3" class="dropdown" id="selectShape">
+            <option selected>Rectangle</option>
+            <option>Circle</option>
+          </select>
+
+          <label class="control-label col-sm-2 col-form-label" id="lblxID" for="x">X:</label>
+          <input type="number" class="form-control" id="xID" placeholder="Enter x coordinate" name="x" required>
+
+
+          <label class="control-label col-sm-2 col-form-label" id="lblyID" for="y">Y:</label>
+          <input type="number" class="form-control" id="yID" placeholder="Enter y coordinate" name="y" required>
+
+          <label class="control-label col-sm-2 col-form-label" id="lblrwID" for="r">Width:</label>
+          <input type="number" class="form-control" id="rwID" placeholder="Enter Width" name="r" required>
+
+          <label class="control-label col-sm-2 col-form-label" id="lblheight" for="height">Height:</label>
+          <input type="number" class="form-control" id="height" placeholder="Enter height" name="height" required>
+
+          <label class="control-label col-sm-2 col-form-label" id="lblunitsID" for="units">Units:</label>
+          <input type="text" class="form-control" id="unitsID" placeholder="Enter units" name="units">
+          <br>
+          <button class="btn btn-dark mb-2" type="submit">Add Shape</button>
+
+        </form>
+      </div>
+    </div>
+
+    <br>
+    <div id="ScaleShapes">
+      <h4>Scale shapes</h4>
+
+
+
+      <div class="form-group row" id="scaleshapes">
+        <form id="scaleShape">
+
+          <select name="drop3" class="dropdown3" id="dropdown3">
+            <option selected>None</option>
+          </select>
+
+          <select name="drop4" class="dropdown" id="selectShapeToScale">
+            <option selected>Rectangle</option>
+            <option>Circle</option>
+          </select>
+          <br>
+
+          <label id="lblscale" for="scale">Scale Factor:</label>
+          <input type="number" min="1" max="20" class="form-control" id="scale" placeholder="Enter scale factor"
+            name="scale" required>
+          <br>
+          <button class="btn btn-dark mb-2" type="submit">Scale Shape</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="database">
+      <center>
+        <h2>Database</h2>
+      </center>
+
+      <!-- Database login -->
+      <h5>Database Login</h5>
+      <form id="login">
+        <label for="user">Username:</label>
+        <input type="text" class="form-control" id="user" placeholder="Enter Username">
+        <label for="pass">Password:</label>
+        <input type="password" class="form-control" id="pass" placeholder="Enter Password">
+        <label for="database_name">Database Name:</label>
+        <input type="text" class="form-control" id="database_name" placeholder="Enter Database Name">
+        <br>
+        <button type="submit" class="btn btn-dark" id="btn_login">Login</button>
+      </form>
+    </div>
+
+
+       <!-- All the elements to disable/enable according to Login -->
+      <div id="DatabaseUI">
+        <div id=commands>
+      <br>
+      <h5>Database Critical Commands:</h5>
+      <button class="btn btn-dark" id="DBStoreFiles">Store All Files</button>
+      <button class="btn btn-dark" id="DBClearData">Clear All Data</button>
+
+      <br></br>
+      <h5>Display DB Status</h5>
+      <p id="status">Database has N1 files, N2 changes and N3 downloads</p>
+      <button class="btn btn-dark" id="reload">Reload/Update</button>
+      </div>
+
+
+
+
+    <div id="querries">
+      <br></br>
+      <h5 id="DBQueryTitle">Display Files</h5>
+
+      <!-- File Search Options -->
+      <label for="Options">Select Query Search Type:</label>
+      <select name="Options" class="dropdown" id="DBSearchOptions">
+        <option selected>None</option>
+        <option>Q1: Files</option>
+        <option>Q2: Files Date</option>
+        <option>Q3: Files Modified</option>
+        <option>Q4: Files Shapes Range</option>
+        <option>Q5: Frequent Downloads</option>
+        <option>Q6: Specific Changes</option>
+      </select>i
+      <br>
+
+      <label for="sortOp">Sort By:</label>
+      <select name="sortOp" class="dropdown" id="DBdropdown">
+      </select>
+      <br>
+
+      <!-- N number of downloads input field -->
+      <div id="NdownloadDiv">
+        <label id="lblNDownload" for="NDownload">Number of downloads to Display:</label>
+        <input placeholder="Whole number ONLY" type="number" min="0" class="form-control" id="NDownload"
+          name="Ndownload">
+        <br>
+      </div>
+
+
+         <!-- file_name Dropdown -->
+         <div id="divFile_name">
+          <br></br>
+          <label for="file_name">File Name: </label>
+          <select name="file_name" class="dropdown" id="file_name">
+          </select>
+          <br>
+        </div>
+  
+  
+        <!-- change_type Dropdown -->
+        <div id="divChange_type">
+          <label for="change_type">Type of Change: </label>
+          <select name="change_type" class="dropdown" id="change_type">
+          </select>
+          <br>
+        </div>
+
+      <!-- Date Range Input Calendar fields -->
+      <div id="dateRange">
+        <label id="lblstartDate" for="startDate">Start Date:</label>
+        <input type="date" class="form-control" id="startDate" name="startDate">
+
+        <label id="lblendDate" for="endDate">End Date:</label>
+        <input type="date" class="form-control" id="endDate" name="endDate">
+        <br>
+      </div>
+
+      <!-- Shape Range input fields -->
+      <div id="shapeRange">
+        <label id="lblstartRange" for="startRange">Shape Range From:</label>
+        <input placeholder="From" type="number" class="form-control" id="startRange" name="startRange">
+
+        <label id="lblendRange" for="endRange">Shape Range To:</label>
+        <input placeholder="To" type="number" class="form-control" id="endRange" name="endRange">
+        <br>
+      </div>
+
+      <!-- Shape Type Dropdown -->
+      <div id="divShapeType">
+        <label for="shapeType">Shape Type: </label>
+        <select name="shapeType" class="dropdown" id="shapeType">
+          <option selected>Circle</option>
+          <option>Rectangle</option>
+          <option>Path</option>
+          <option>Group</option>
+        </select>
+        <br>
+      </div>
+
+
+      <!-- Execute Query Button -->
+      <button class="btn btn-dark" id="DBExecute">Run</button>
+      <br>
+      <div id="DBtableDiv">
+        <table class="table" id="DBtable">
+        </table>
+      </div>
+    </div>
+
+</div>
+    <script src="/index.js"></script>
+</body>
+
+</html>

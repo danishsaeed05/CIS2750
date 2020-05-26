@@ -1,0 +1,154 @@
+html {
+    width: 60%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    background-color: #FFFFFF;
+}
+
+
+body {
+      height: 100%;
+    min-height: 100%;
+    line-height: 1.75;
+    background-color: #FFFFFF;
+}
+a:link:hover {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    cursor: pointer;
+    cursor: hand;
+}
+
+
+
+input[type=submit], button {
+    cursor: pointer;
+    cursor: hand;
+}
+@media(max-width: 1500px) {
+    html {
+        font-size: 14px !important;
+        width: 80% !important;
+    }
+}
+@media(max-width: 480px) {
+    html {
+        font-size: 12px !important;
+        width: 90% !important;
+    }
+}
+@media(max-width: 320px) {
+    html {
+        font-size: 12px !important;
+        width: 100% !important;
+    }
+}
+
+
+
+#logPanel{
+   width:100%;
+    overflow:scroll;
+    position:relative;
+    height: 700px;
+
+}
+
+#viewPanel{
+   width:100%;
+    overflow:scroll;
+    position:relative;
+    height: 520px;
+    display:none;
+}
+
+#devEditAtt
+{
+  display: none;
+}
+
+#mytable{
+  border-collapse: collapse;
+}
+
+table td, table th {
+    padding: 10px; /* cellpadding */
+}
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+#viewImage
+{
+  width: 300px;
+  height: 300px;
+  display: block;
+
+}
+
+#viewPanelImage
+{
+  width: 200px;
+  height: 200px;
+  display: block;
+  padding: 0px;
+
+}
+
+#logImage
+{
+  display: block;
+  width: 200px;
+  height: 100px;
+}
+
+
+/* Assignment 4 */
+
+#database, #commands{
+  padding: 20%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#dateRange{
+  display:none; 
+   width: 200px;   
+}
+
+#NDownload{
+  width: 200px;   
+}
+
+#shapeRange{
+  display:none; 
+   width: 200px;   
+}
+
+#divShapeType{
+  display:none; 
+}
+
+#NdownloadDiv{
+  display:none; 
+}
+
+#DBtableDiv{
+   overflow:scroll;
+   position:relative;
+   height: 500px;
+
+}
+
+#divFile_name, #divChange_type{
+  display:none; 
+}
